@@ -21,7 +21,7 @@ export default class OrderRepositoryDatabase implements OrderRepository {
               total
             )
                values ($1, $2, $3, $4, $5, $6, $7) returning *`, 
-            [order.getCode(), order.getCpf(), order.issueDate, order.getFreight(), order.sequence, order.getCoupon(), order.getTotal()])
+            [order.getCode(), order.getCpf(), order.issueDate,  order.sequence, order.getTotal()])
 
             for(const orderItem of order.getOrderItems()){
                 await this.databaseConnection.query(`

@@ -7,7 +7,7 @@ import Router from "./shared/infra/http/Router";
 const app = express()
 
 app.get("/test", (req:Request, res: Response) => {
-    res.send("Hello word")
+    res.send("Hello word test")
 })
 //app.listen(3000)
 
