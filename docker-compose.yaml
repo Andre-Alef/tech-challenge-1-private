@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=restaurant
+    expose:
+      - 5432:5432
+    ports:
+      - 5432:5432
+    networks:
+      - postgres-compose-network
+  app:
+    build:
+      context: .
+    ports:
+      - 3000:3000
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - postgres-compose-network
+  teste-pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "andrealef58@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "PgAdmin2019!"
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
+    networks:
+      - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge
+volumes:
+  db_data:
