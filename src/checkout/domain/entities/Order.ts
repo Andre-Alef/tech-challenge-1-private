@@ -8,12 +8,11 @@ import { Product } from "./Product"
 export default class Order {
     private cpf: Cpf | undefined
     private orderItems: OrderItem[]
-    private freight: number
      code: OrderCode
     constructor(cpf?: string, readonly issueDate: Date = new Date(), readonly sequence: number = 1){
         this.cpf = cpf ? new Cpf(cpf) : undefined
         this.orderItems = []
-        this.freight = 0
+        
         this.code = new OrderCode(issueDate, sequence)
         
     }
